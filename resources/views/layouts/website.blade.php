@@ -11,6 +11,7 @@
     <title>Internet Banking - @yield('title')</title>
 
     <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
