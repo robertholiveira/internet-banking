@@ -31,7 +31,7 @@
 
                         <div class="row form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <input id="cpf" type="text" class="form-control" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required autofocus>
+                                <input id="cpf" type="text" class="cpf-field form-control" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required autofocus>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">

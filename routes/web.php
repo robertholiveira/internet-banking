@@ -61,13 +61,18 @@ Route::post('cadastro', [
     'uses' => 'Auth\RegisterController@register'
 ]);
 
-
-
-
+//Rotas que necessitam autenticação
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
 });
 
+
+//Rotas comuns
+Route::get('/logout', function(){
+    return view('logout');
+});
+
+//Rota de verificação de e-mail
 Route::get('/cliente/verificacaoCliente/{token}', 'Auth\RegisterController@verificarCliente');

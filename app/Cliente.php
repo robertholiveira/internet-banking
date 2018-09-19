@@ -30,6 +30,11 @@ class Cliente extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function conta()
+    {
+        return $this->hasOne('InternetBanking\Conta');
+    }
+
     public function VerificarCliente()
     {
         return $this->hasOne('InternetBanking\VerificarCliente');

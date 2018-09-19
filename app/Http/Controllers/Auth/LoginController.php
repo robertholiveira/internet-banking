@@ -5,6 +5,7 @@ namespace InternetBanking\Http\Controllers\Auth;
 use InternetBanking\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -49,5 +50,10 @@ class LoginController extends Controller
             return back()->with('warning', 'Você precisa confirmar seu e-mail para se logar.');
         }
         return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('/login')->with('status', 'Sessão encerrada com sucesso.');
     }
 }

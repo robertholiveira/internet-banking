@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use InternetBanking\Notifications\VerificacaoDeCliente;
+use InternetBanking\Http\Controllers\ContaController;
 
 class RegisterController extends Controller
 {
@@ -78,6 +79,7 @@ class RegisterController extends Controller
             'verificado' => 0,
         ]);
  
+        // insere no banco de dados token de verificação de e-mail
         $verificarCliente = VerificarCliente::create([
             'cliente_cpf' => $cliente->cpf,
             'token' => str_random(40)
@@ -97,6 +99,9 @@ class RegisterController extends Controller
             if(!$cliente->verificado) {
                 $verificacaoCliente->cliente->verificado = 1;
                 $verificacaoCliente->cliente->save();
+                
+                ContaController::store($verificacaoCliente->cliente);
+
                 $status = "Seu e-mail foi verificado, agora poderá fazer login.";
             }else{
                 $status = "Seu e-mail já está verificado.";

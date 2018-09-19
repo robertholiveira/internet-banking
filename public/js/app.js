@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('.cpf-field').mask('000.000.000-00', {reverse: true});
 });
 require('jquery-mask-plugin');
+
 window._ = require('lodash');
 
 /**

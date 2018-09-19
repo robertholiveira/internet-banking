@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dashboard navbar-static-top  m-b-20">
+<nav class="navbar navbar-dashboard navbar-static-top  m-b-30">
     <div class="container">
         <div class="navbar-header">
 
@@ -35,14 +35,9 @@
                 </li>
 
                 <li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        {{ csrf_field() }}
-                        <a class="btn btn-light" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                            Encerrar sessão
-                        </a>
-                    </form>
+                    <a class="btn btn-light" href="{{ route('logout') }}">
+                        Encerrar sessão
+                    </a>
                 </li>
             </ul>
         </div>
