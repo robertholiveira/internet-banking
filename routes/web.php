@@ -63,9 +63,20 @@ Route::post('cadastro', [
 
 //Rotas que necessitam autenticação
 Route::group(['middleware' => 'auth'], function() {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
+
+    Route::get('/transferencia', function () {
+        return view('transferencia');
+    })->name('transferencia');
+
+    Route::post('fazer-transferencia', [
+        'as' => 'fazer-transferencia',
+        'uses' => 'TransacaoController@fazer_transacao'
+    ]);
+
 });
 
 

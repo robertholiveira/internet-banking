@@ -14,9 +14,13 @@ class CreateVerificarClientesTable extends Migration
     public function up()
     {
         Schema::create('verificar_clientes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->string('cliente_cpf');
             $table->string('token');
             $table->timestamps();
+            $table->foreign('cliente_cpf')
+            ->references('cpf')->on('clientes')
+            ->onDelete('cascade');
         });
     }
 

@@ -14,6 +14,7 @@ class AdicionaCampoClienteVerificado extends Migration
     public function up()
     {
         Schema::table('clientes', function(BluePrint $table) {
+            $table->engine = 'InnoDB';
             $table->string('verificado', 100);
         });
     }

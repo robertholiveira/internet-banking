@@ -14,10 +14,13 @@ class CreateContaTable extends Migration
     public function up()
     {
         Schema::create('contas', function (Blueprint $table) {
-            $table->increments('conta_id')->unique();
+            $table->engine = 'InnoDB';
+            $table->increments('conta_id',10)->unique();
             $table->string('cliente_cpf');
             $table->double('saldo');
-            $table->timestamps();
+            $table->foreign('cliente_cpf')
+            ->references('cpf')->on('clientes')
+            ->onDelete('cascade');
         });
     }
 
