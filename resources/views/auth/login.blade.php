@@ -10,9 +10,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel p-t-30 p-r-75 p-l-75 p-b-30 panel-default">
 
-                @if (session('status'))
+                @if (session('sucess'))
                     <div class="alert alert-success">
-                        {{ session('status') }}
+                        {{ session('sucess') }}
                     </div>
                 @endif
                 @if (session('warning'))

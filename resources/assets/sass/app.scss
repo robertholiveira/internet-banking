@@ -31,6 +31,11 @@ body{
 }
 
 //Global
+
+.text-success {
+    color: #73d875;
+}
+
 .btn-light{
     border: 1px solid $color-light;
     color: $color-light;
@@ -39,6 +44,28 @@ body{
 
 .nav > li > a:hover, .nav > li > a:focus{
     background: transparent;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+.nav-tabs {
+    text-align:center;
+    border-bottom: 2px solid $brand-primary;
+    margin-bottom: 20px;
+    li{
+        @include transition(all 0.4s);
+        a{
+            background: transparent !important;
+            border: none !important;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        &.active{
+            border-bottom: 4px solid $brand-primary;
+        }
+    }
 }
 
 //Top bar
@@ -97,7 +124,8 @@ body{
         h1{
             color: $brand-primary !important;
             font-weight: 700 !important;
-            font-size: 35px;
+            font-size: 30px;
+            text-align: center;
         }
     } 
 }
@@ -172,6 +200,17 @@ body{
                 border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             }
         }
+    }
+}
+
+
+
+// saldo
+.saldo{
+    text-align: center;
+    font-size: 20px;
+    strong{
+        color: #7032e7;
     }
 }
 

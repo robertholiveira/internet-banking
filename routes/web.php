@@ -68,14 +68,34 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard');
     });
 
-    Route::get('/transferencia', function () {
-        return view('transferencia');
-    })->name('transferencia');
+    Route::get('/transferencia-interna', function () {
+        return view('transferencia-interna');
+    })->name('transferencia-interna');
 
-    Route::post('fazer-transferencia', [
-        'as' => 'fazer-transferencia',
-        'uses' => 'TransacaoController@fazer_transacao'
+    Route::get('/transferencia-externa', function () {
+        return view('transferencia-externa');
+    })->name('transferencia-externa');
+
+    Route::post('fazer-transferencia-interna', [
+        'as' => 'fazer-transferencia-interna',
+        'uses' => 'InternetBankingController@realizar_transferencia_interna'
     ]);
+
+    Route::post('fazer-transferencia-externa', [
+        'as' => 'fazer-transferencia-externa',
+        'uses' => 'InternetBankingController@realizar_transferencia_externa'
+    ]);
+
+    Route::get('/confirma-transferencia', function () {
+        
+        return view('confirma-transferencia')->with();
+    })->name('confirma-transferencia');
+
+    Route::get('/saldo-historico', function () {
+        $usuario = Auth::user();
+        return view('saldo-historico')->with('usuario', $usuario);
+    })->name('saldo-historico');
+    
 
 });
 

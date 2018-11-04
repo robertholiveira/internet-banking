@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Internet Banking - @yield('title')</title>
+    
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800" rel="stylesheet">
@@ -27,9 +28,20 @@
                     <div class="col-md-8">
                             <div class="panel panel-admin panel-default">
                                 <div class="panel-heading">
-                                    <h1>@yield('heading-title')</h1></div>
+                                    <h1>@yield('heading-title')</h1>
+                                </div>
                 
                                 <div class="panel-body">
+                                    @if(session()->has('sucess'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('sucess') }}
+                                        </div>
+                                    @endif
+                                    @if(session()->has('warning'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('warning') }}
+                                        </div>
+                                    @endif
                                     @yield('content')
                                 </div>
                             </div>

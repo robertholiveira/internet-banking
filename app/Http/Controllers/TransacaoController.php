@@ -5,63 +5,56 @@ namespace InternetBanking\Http\Controllers;
 use InternetBanking\Transacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use InternetBanking\Conta;
-use Illuminate\Support\Facades\Redirect;
 Use InternetBanking\Transacao_credito;
 Use InternetBanking\Transacao_debito;
 class TransacaoController extends Controller
 {
 
-
-
-    /**
-     * Faz uma transferencia de banco para banco
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function fazer_transacao(Request $request)
+    public function __construct()
     {
-        $usuario_atual = auth()->user();
-        $this->validate($request, [
-            'cpf_favorecido' => 'required|string|max:255| exists:contas,cliente_cpf',
-            'valor_transferencia' => 'required|regex:/^\d*(\,\d{1,2})?$/'
-        ]);
-
-        if($usuario_atual->cpf == $request->cpf_favorecido){
-            return Redirect::back()
-            ->withErrors(['cpf_favorecido'=> 'Esse é seu cpf retardado!'])
-            ->withInput($request->input());
-        }
-
-        if($usuario_atual->conta->saldo < $request->valor_transferencia){
-            return Redirect::back()
-            ->withErrors(['valor_transferencia'=> 'Cê tem esse dinheiro todo?!'])
-            ->withInput($request->input());
-        }
-
-        $this->cria_transacao_favorecido( $request->cpf_favorecido,  $request->valor_transferencia);
-
+        $this->middleware('auth');
     }
-
 
     /**
-     * Cria transacao para favorecido
+     * Lança crédito para um usuário
      */
-    protected function cria_transacao_favorecido($cpf, $valor){
-        $conta = Conta::where('cliente_cpf', $cpf)->first();
-        $contaAtributes = $conta->getAttributes();
-      
-        $transacao = new Transacao([
-            'nome_transacao' => 'Transacao',
-            'conta_id' => $contaAtributes['conta_id'],
+    public static function lanca_credito($usuario, $nome_transacao , $valor){
+
+        //retira valor de conta
+        $usuario->conta->saldo +=$valor;
+
+        $transacao = new Transacao_credito([
+            'nome_transacao' => $nome_transacao,
             'valor_transacao' => $valor,
-            'data_transacao' => date('Y-m-d')
+            'data_transacao' => date('Y-m-d H:i:s'),
+            'saldo_atual' => $usuario->conta->saldo
         ]);
 
-        $conta->transacoes()->save($transacao);
-    
+        $usuario->conta->transacoes()->save($transacao);
+        
+        $usuario->conta->save();
     }
+
+    /**
+     * Lança débito para um usuário
+     */
+    public static function lanca_debito($usuario, $nome_transacao, $valor){
+
+        $usuario->conta->saldo -= $valor;
+        
+        $transacao = new Transacao_debito([
+            'nome_transacao' => $nome_transacao,
+            'valor_transacao' => $valor,
+            'data_transacao' => date('Y-m-d H:i:s'),
+            'saldo_atual' => $usuario->conta->saldo
+        ]);
+        $usuario->conta->transacoes()->save($transacao);
+        $usuario->conta->save();
+    }
+
+    
+
+    /* ====== Padrão Laravel ======== */
 
     /**
      * Display the specified resource.

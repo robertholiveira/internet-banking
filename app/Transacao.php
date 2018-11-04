@@ -8,7 +8,7 @@ class Transacao extends Model
 {
 
     protected $fillable = [
-        'conta_id','nome_transacao', 'valor_transacao', 'data_transacao'
+        'conta_id','nome_transacao', 'valor_transacao', 'data_transacao', 'saldo_atual'
     ];
     protected $table = 'transacoes';
 
@@ -20,8 +20,4 @@ class Transacao extends Model
     {
         return $this->BelongsTo('InternetBanking\Conta');
     }
-
-    public function transacable(){ 
-        return $this->morphTo();
-    }   
 }

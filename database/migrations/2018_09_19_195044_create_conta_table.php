@@ -18,6 +18,7 @@ class CreateContaTable extends Migration
             $table->increments('conta_id',10)->unique();
             $table->string('cliente_cpf');
             $table->double('saldo');
+            $table->timestamps();
             $table->foreign('cliente_cpf')
             ->references('cpf')->on('clientes')
             ->onDelete('cascade');

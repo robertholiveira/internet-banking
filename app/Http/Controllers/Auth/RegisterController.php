@@ -110,13 +110,13 @@ class RegisterController extends Controller
             return redirect('/login')->with('warning', "Desculpe, seu e-mail não pode ser verificado.");
         }
         
-        return redirect('/login')->with('status', $status);
+        return redirect('/login')->with('sucess', $status);
     }
 
     protected function registered(Request $request, $cliente)
     {
         $this->guard()->logout();
-        return redirect('/login')->with('status', 'Nós enviamos um código de verificação em seu e-mail. Por favor, verifique.');
+        return redirect('/login')->with('sucess', 'Nós enviamos um código de verificação em seu e-mail. Por favor, verifique.');
     }
 
 

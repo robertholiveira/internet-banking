@@ -13,11 +13,9 @@ class CreateTransacaoTable extends Migration
             $table->increments('transacao_id')->unique();
             $table->integer('conta_id')->unsigned();
             $table->string('nome_transacao');
-            $table->double('valor_transacao');
+            $table->double('valor_transacao', 9, 2);
             $table->timestamp('data_transacao');
-
-            $table->integer('transacable_id');
-            $table->string('transacable_type');
+            $table->string('tipo_transacao');
 
             $table->foreign('conta_id')
             ->references('conta_id')->on('contas')
@@ -32,6 +30,6 @@ class CreateTransacaoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contas');
+        Schema::dropIfExists('transacoes');
     }
 }
