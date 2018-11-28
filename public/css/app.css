@@ -8226,6 +8226,7 @@ body {
 }
 
 #sidebar-wrap #sidebar-menu li {
+  width: 100%;
   margin: 15px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s;
@@ -8431,6 +8432,32 @@ input {
 
 .recarga-submit button {
   margin-top: 30px;
+}
+
+.conversoes h4 {
+  font-size: 15px;
+}
+
+.conversoes .card-coin {
+  border-bottom: 2px solid #ededed;
+}
+
+.conversoes .card-coin.no-border {
+  border: none;
+}
+
+.conversoes .card-coin.bitcoin {
+  background: #7230f7;
+  color: white;
+  text-align: center;
+  border-radius: 9px;
+  padding: 15px;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.conversoes .card-coin.bitcoin p {
+  margin-bottom: 0px;
 }
 
 

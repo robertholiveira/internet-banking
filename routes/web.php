@@ -123,6 +123,11 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'InternetBankingController@realiza_recarga'
     ]);
     
+
+    Route::get('conversoes', [
+        'as' => 'conversoes',
+        'uses' => 'InternetBankingController@get_conversoes'
+    ]);
 });
 
 

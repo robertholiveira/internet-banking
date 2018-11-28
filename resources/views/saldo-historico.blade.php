@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-xs-12">
             <p class="saldo">
-                Saldo atual: <strong><span class="font-xs">R$</span> {{ bcadd($saldo,0,2) }} </strong>
+                Saldo atual: <strong><span class="font-xs">R$</span> {{ number_format($saldo,2, ',', '.') }} </strong>
             </p>
         </div>
         <div class="col-xs-12 ">
@@ -73,8 +73,8 @@
                                     <tr>
                                         <td>{{ date("d/m/Y", strtotime($transacao->data_transacao)) }}</td>
                                         <td>{{ $transacao->nome_transacao }}</td>
-                                        <td class="{{ $class }} ">R$ {{ bcadd($transacao->valor_transacao, 0, 2) }} {{ $simbol }}</td>
-                                        <td class="text-right">R$ {{ bcadd($transacao->saldo_atual, 0, 2) }}</td>
+                                        <td class="{{ $class }} ">R$ {{ number_format($transacao->valor_transacao,2, ',', '.') }} {{ $simbol }}</td>
+                                        <td class="text-right">R$ {{ number_format($transacao->saldo_atual,2, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -99,8 +99,8 @@
                                         <tr>
                                             <td>{{ date("d/m/Y", strtotime($transacao->data_transacao)) }}</td>
                                             <td>{{ $transacao->nome_transacao }}</td>
-                                            <td class="text-danger">R$ {{ bcadd($transacao->valor_transacao, 0, 2) }} D</td>
-                                            <td class="text-right">R$ {{ bcadd($transacao->saldo_atual, 0, 2) }}</td>
+                                            <td class="text-danger">R$ {{ number_format($transacao->valor_transacao,2, ',', '.') }} D</td>
+                                            <td class="text-right">R$ {{ number_format($transacao->saldo_atual,2, ',', '.') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -125,8 +125,8 @@
                                         <tr>
                                             <td>{{ date("d/m/Y", strtotime($transacao->data_transacao)) }}</td>
                                             <td>{{ $transacao->nome_transacao }}</td>
-                                            <td class=" text-right text-success">R$ {{ bcadd($transacao->valor_transacao, 0, 2) }} C</td>
-                                            <td class=" text-right text-success">R$ {{ bcadd($transacao->saldo_atual, 0, 2) }}</td>
+                                            <td class=" text-right text-success">R$ {{ number_format($transacao->valor_transacao,2, ',', '.') }} C</td>
+                                            <td class=" text-right text-success">R$ {{ number_format($transacao->saldo_atual,2, ',', '.') }}</td>
 
                                         </tr>
                                     @endforeach

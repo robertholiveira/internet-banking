@@ -154,35 +154,66 @@ class InternetBankingController extends Controller
             "message" => $message,
             "destination_number" => $destination_number
         ];
-        
-        $curl = curl_init();
+    
+        $this->getAPI("POST", "https://www.garlicsms.com/api/send", $data);
 
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://www.garlicsms.com/api/send",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30000,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            
-            CURLOPT_POSTFIELDS => json_encode($data),
-            CURLOPT_HTTPHEADER => array(
-                // Set here requred headers
-                "accept: */*",
-                "accept-language: en-US,en;q=0.8",
-                "content-type: application/json",
-            ),
-        ));
-        
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        
-        curl_close($curl);
     }
 
+    function get_conversoes(){
+        $respUSD = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=USD_BRL&compact=ultra", false );
+        $respEUR = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=EUR_BRL&compact=ultra", false );
+        $respJPY = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=JPY_BRL&compact=ultra", false );   
+        $respGBP = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=GBP_BRL&compact=ultra", false );   
+        $respCAD = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=CAD_BRL&compact=ultra", false );   
+        $respAUD = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=AUD_BRL&compact=ultra", false );   
+        $respARS = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=ARS_BRL&compact=ultra", false );   
+        $respCHF = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=CHF_BRL&compact=ultra", false ); 
+        $respNZD = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=NZD_BRL&compact=ultra", false );                     
+        $respBTC = $this->getAPI("GET", "https://free.currencyconverterapi.com/api/v6/convert?q=BTC_BRL&compact=ultra", false );   
+
+
+        $conversoes = array(
+            'usd' => reset($respUSD),
+            'eur' => reset($respEUR),
+            'jpy' => reset($respJPY),
+            'gbp' => reset($respGBP),
+            'cad' => reset($respCAD),
+            'aud' => reset($respAUD),
+            'ars' => reset($respARS),
+            'chf' => reset($respCHF),
+            'nzd' => reset($respNZD),        
+            'btc' => reset($respBTC),
+        );
+
+        return view('conversoes')->with('conversoes', $conversoes);
+    }
+
+    public function getAPI($method, $url, $data){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/json",
+            ),
+            CURLOPT_URL => $url
+        ));
+
+        if($method == "POST"){
+            curl_setopt($curl,  CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($curl,  CURLOPT_POSTFIELDS, json_encode($data));
+        }
+
+         // Send the request & save response to $resp
+         $resp = curl_exec($curl);
+         $err = curl_error($curl);
+    
+         curl_close($curl);
+         
+         return json_decode($resp, true);
+
+    }
 
 }

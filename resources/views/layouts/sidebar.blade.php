@@ -5,5 +5,6 @@
         <li><a href="">Depósito por boleto <img src="./images/deposito-boleto-icon.png" alt=""></a></li>
     <li><a href="{{ route('pagar-contas') }}">Pagar contas <img src="./images/pagar-contas-icon.png" alt=""></a></li>
         <li><a href="{{ route('recarga-celular') }}">Recarga de telefone <img src="./images/recarga-icon.png" alt=""></a></li>
+        <li><a href="{{ route('conversoes') }}">Cotações <img src="./images/conversoes.png" alt=""></a></li>
     </ul>
 </div>

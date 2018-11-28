@@ -26,7 +26,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown menu-pessoal">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        {{ Auth::user()->name }}
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
