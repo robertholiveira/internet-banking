@@ -16,8 +16,8 @@ class CreateContaTable extends Migration
         Schema::create('contas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('conta_id',10)->unique();
-            $table->string('cliente_cpf');
-            $table->double('saldo');
+            $table->string('cliente_cpf', 10);
+            $table->double('saldo_conta',9,2);
             $table->timestamps();
             $table->foreign('cliente_cpf')
             ->references('cpf')->on('clientes')

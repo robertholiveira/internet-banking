@@ -14,7 +14,7 @@ class ContaController extends Controller
     {
         Conta::create([
             'cliente_cpf' => $cliente->cpf,
-            'saldo' => 0
+            'saldo_conta' => 0
         ]);
     }
 

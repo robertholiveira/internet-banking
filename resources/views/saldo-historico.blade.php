@@ -6,7 +6,7 @@
     ['tipo_transacao', '=', 'debito']
     ])->orderBy('data_transacao')->get();
 
-     $transacoes_credito = DB::table('transacoes')->where([
+    $transacoes_credito = DB::table('transacoes')->where([
     ['conta_id', '=', $usuario->conta->conta_id],
     ['tipo_transacao', '=', 'credito']
     ])->orderBy('data_transacao')->get();

@@ -10,12 +10,12 @@ class CreateTransacaoTable extends Migration
     {
         Schema::create('transacoes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('transacao_id')->unique();
-            $table->integer('conta_id')->unsigned();
-            $table->string('nome_transacao');
+            $table->increments('transacao_id',10)->unique();
+            $table->integer('conta_id',10)->unsigned();
+            $table->string('nome_transacao',100);
             $table->double('valor_transacao', 9, 2);
             $table->timestamp('data_transacao');
-            $table->string('tipo_transacao');
+            $table->string('tipo_transacao',45);
 
             $table->foreign('conta_id')
             ->references('conta_id')->on('contas')

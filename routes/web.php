@@ -87,7 +87,6 @@ Route::group(['middleware' => 'auth'], function() {
     ]);
 
     Route::get('/confirma-transferencia', function () {
-        
         return view('confirma-transferencia')->with();
     })->name('confirma-transferencia');
 
@@ -95,8 +94,35 @@ Route::group(['middleware' => 'auth'], function() {
         $usuario = Auth::user();
         return view('saldo-historico')->with('usuario', $usuario);
     })->name('saldo-historico');
-    
 
+    Route::get('/pagar-contas', function () {
+        return view('pagar-contas');
+    })->name('pagar-contas');
+    
+    Route::post('verifica-boleto', [
+        'as' => 'verifica-boleto',
+        'uses' => 'InternetBankingController@verifica_boleto'
+    ]);
+
+    Route::get('/confirma-boleto', function () {
+        return view('confirma-boleto');
+    })->name('confirma-boleto');
+
+    Route::post('processa-boleto', [
+        'as' => 'processa-boleto',
+        'uses' => 'InternetBankingController@processa_boleto'
+    ]);
+
+    
+    Route::get('/recarga-celular', function () {
+        return view('recarga-celular');
+    })->name('recarga-celular');
+
+    Route::post('processar-recarga', [
+        'as' => 'processar-recarga',
+        'uses' => 'InternetBankingController@realiza_recarga'
+    ]);
+    
 });
 
 

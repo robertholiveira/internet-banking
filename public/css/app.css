@@ -8267,6 +8267,172 @@ footer span {
   font-weight: 500;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+input {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  display: table-cell;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  margin: 0;
+}
+
+.suffix input {
+  border-radius: 4px 0px 0px 4px;
+}
+
+.suffix .input-group-addon {
+  border-left: 0;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.prefix input {
+  border-radius: 0px 4px 4px 0px;
+}
+
+.prefix .input-group-addon {
+  border-right: 0;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.presuffix input {
+  border-radius: 0px;
+}
+
+.input-group-addon.prefix {
+  border-radius: 4px 0px 0px 4px;
+  border-right: 0;
+}
+
+.input-group-addon.suffix {
+  border-radius: 0px 4px 4px 0px;
+  border-left: 0;
+}
+
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+
+.center {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.center input[type="checkbox"] {
+  position: relative;
+  display: inline-block;
+  min-height: 130px;
+  width: 33%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+.center input[type="checkbox"]:after {
+  content: '';
+  font-size: 2.4em;
+  text-align: center;
+  line-height: 140px;
+  color: #555555;
+  position: absolute;
+  margin: auto auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: block;
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  transition: all 0.3s ease-out;
+}
+
+.center input[type="checkbox"]:before {
+  position: absolute;
+  margin: auto auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  content: '';
+  display: block;
+  height: 140px;
+  width: 140px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: all 0.1s ease-in;
+}
+
+.center input[type="checkbox"]:hover:before {
+  height: 60px;
+  width: 60px;
+}
+
+.center input[type="checkbox"]:checked:before {
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+}
+
+.center input[type="checkbox"]:focus {
+  outline: none;
+}
+
+.center input[type="checkbox"].c15:after {
+  content: 'R$ 15';
+}
+
+.center input[type="checkbox"].c30:after {
+  content: 'R$ 30';
+}
+
+.center input[type="checkbox"].c50:after {
+  content: 'R$ 50';
+}
+
+.center input[type="checkbox"]:checked:after {
+  background-color: #664095;
+  color: #fff;
+}
+
+.recarga-submit {
+  text-align: center;
+}
+
+.recarga-submit button {
+  margin-top: 30px;
+}
+
 
 /*
 This .scss loop will create "margin helpers" and "padding helpers" for use in your web projects.

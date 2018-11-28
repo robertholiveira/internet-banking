@@ -59,7 +59,10 @@
 
                         
                         <div class="col-sm-4">
-                            <input id="valor_transferencia_externo" type="text" class="money-field form-control" placeholder="Valor da transferência" name="valor_transferencia_externo" value="{{ old('valor_transferencia') }}" required>
+                            <div class="input-group prefix">                           
+                                <span class="input-group-addon">R$</span>
+                                <input id="valor_transferencia_externo" type="text" class="money-field form-control" placeholder="Valor da transferência" name="valor_transferencia_externo" value="{{ old('valor_transferencia') }}" required>
+                            </div>
                             @if ($errors->has('valor_transferencia_externo'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('valor_transferencia_externo') }}</strong>
