@@ -11,6 +11,10 @@
 //spacing helpers
 @import "spacing-helpers";
 
+
+//spacing helpers
+@import "footable";
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -410,4 +414,8 @@ input {
             }
         }
     }
+}
+
+#container-dashboard{
+    width: 98%;
 }

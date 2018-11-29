@@ -10,7 +10,7 @@
 
 @section('content')
 <p>Beneficiário: {{ $boleto['beneficiario']}}</p>
-<p>Valor do boleto: <b>{{ $boleto['valor']}}</b></p>
+<p>Valor do boleto: <b>R$ {{ $boleto['valor']}}</b></p>
 <p>Linha digitável: {{ $boleto['codigo']}}</p>
 <form class="form-horizontal" method="POST" action="{{ route('processa-boleto') }}">
     {{ csrf_field() }}

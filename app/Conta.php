@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Conta extends Model
 {
     protected $fillable = [
-        'cliente_cpf', 'saldo_conta', 'conta_id'
+        'cliente_cpf', 'saldo', 'conta_id'
     ];
     
     protected $primaryKey = 'conta_id';

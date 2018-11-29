@@ -20,7 +20,7 @@
     <div id="app">
         @include('layouts.topbar')
         @include('layouts.header-dash')
-        <div class="container">
+        <div class="container" id="container-dashboard">
                 <div class="row">
                     <div class="col-md-4">
                         @include('layouts.sidebar')
@@ -38,7 +38,7 @@
                                         </div>
                                     @endif
                                     @if(session()->has('warning'))
-                                        <div class="alert alert-success">
+                                        <div class="alert alert-warning">
                                             {{ session()->get('warning') }}
                                         </div>
                                     @endif

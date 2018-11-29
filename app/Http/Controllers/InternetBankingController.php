@@ -23,12 +23,15 @@ class InternetBankingController extends Controller
         
         $usuario_atual = auth()->user();
         $usuario_favorecido = Cliente::find($request->cpf_favorecido);
-        $valor_transferencia = $request->valor_transferencia; 
+        $valor_transferencia = str_replace(",", ".",  str_replace(".","", $request->valor_transferencia));
+        
 
         $this->validate($request, [
             'cpf_favorecido' => 'required|string|max:255|exists:contas,cliente_cpf',
-            'valor_transferencia' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+            'valor_transferencia' => 'required'
         ]);
+
+        
 
         if($usuario_atual->cpf == $usuario_favorecido->cpf){
             return Redirect::back()
@@ -57,12 +60,12 @@ class InternetBankingController extends Controller
     public function realizar_transferencia_externa(Request $request)
     {
         $usuario_atual = auth()->user();
-        $valor_transferencia = $request->valor_transferencia_externo; 
+        $valor_transferencia = str_replace(",", ".",  str_replace(".","", $request->valor_transferencia_externo));
         $nome_favorecido = $request->nome_favorecido; 
 
         $this->validate($request, [
             'cpf_favorecido_externo' => 'required|string|max:255',
-            'valor_transferencia_externo' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+            'valor_transferencia_externo' => 'required|'
         ]);
 
         if($usuario_atual->conta->saldo < $valor_transferencia){
@@ -99,6 +102,11 @@ class InternetBankingController extends Controller
         $boleto = new boletosPHP();
         $boleto->setIpte($codigo_boleto);
         $valor_boleto = (double)$boleto->getValorDocumento();
+
+        if($usuario_atual->conta->saldo < $valor_boleto){
+            return redirect::route('pagar-contas')->with('warning', "Saldo insuficiente para realizar operação.");
+        }
+
         TransacaoController::lanca_debito( $usuario_atual, 'Pagamento de boleto para '.$beneficiario, $valor_boleto);
 
         return redirect::route('pagar-contas')->with('sucess', "Pag. de boleto efetuado com sucesso.");
@@ -113,8 +121,7 @@ class InternetBankingController extends Controller
 
         if(!isset($_POST['check15']) and !isset($_POST['check30']) and !isset($_POST['check50']) ){
             return Redirect::back()
-            ->withErrors(['valor_recarga'=> 'O campo valor recarga é obrigatório.'])
-            ->withInput($request->input());
+            ->with(['valor_recarga'=> 'O campo valor recarga é obrigatório.']);
         }
 
         $usuario_atual = auth()->user();

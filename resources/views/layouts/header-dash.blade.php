@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/dashboard') }}">
                 <img src="{{ URL::to('/') }}/images/logo-light-internet-banking.png" alt="">
             </a>
         </div>
@@ -25,7 +25,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown menu-pessoal">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
 

@@ -1,11 +1,11 @@
 
 $(document).ready(function(){
     $('.cpf-field').mask('000.000.000-00', {reverse: true});
-    $('.money-field').mask('000.000.000.000.000.00', {reverse: true});
+    $('.money-field').mask('000.000.000.000.000,00', {reverse: true});
     $('.agencia-field').mask('0000', {reverse: true});
     $('.conta-field').mask('00000000-0', {reverse: true});
     $('.phone-field').mask('00 00000-0000', {reverse: true});
-
+    $('.cod-barras-field').mask('00000.00000 00000.000000 00000.000000 0 00000000000000');
     $('.c15').change(function() {
         $('.c30').prop('checked', false); // Unchecks it
         $('.c50').prop('checked', false); // Unchecks it

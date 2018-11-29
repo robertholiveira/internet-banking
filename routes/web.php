@@ -113,7 +113,6 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'InternetBankingController@processa_boleto'
     ]);
 
-    
     Route::get('/recarga-celular', function () {
         return view('recarga-celular');
     })->name('recarga-celular');
@@ -122,7 +121,6 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'processar-recarga',
         'uses' => 'InternetBankingController@realiza_recarga'
     ]);
-    
 
     Route::get('conversoes', [
         'as' => 'conversoes',

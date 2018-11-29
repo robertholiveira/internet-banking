@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <p>Deseja realmente encessar a sessão? Fazendo isso não será possível acessar sua conta enquanto não digitar os dados de Login novamente.</p>
+    <p>Deseja realmente encerrar a sessão? Fazendo isso não será possível acessar sua conta enquanto não digitar os dados de Login novamente.</p>
     <form id="logout-form" action="{{ route('logout') }}" method="POST">
             {{ csrf_field() }}
             <a class="btn btn-primary" href="{{ route('logout') }}"
